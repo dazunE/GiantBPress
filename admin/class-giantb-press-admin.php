@@ -123,10 +123,193 @@ class Giantb_Press_Admin {
 
 	}
 
-	public function giant_bomb_api_connection() {
 
-    $game_data = $this->api_loader->games();
+  public function giant_bomb_post_types() {
+
+		$labels = array(
+			'name'                  => _x( 'Games', 'Post Type General Name', 'giantb-press' ),
+			'singular_name'         => _x( 'Game', 'Post Type Singular Name', 'giantb-press' ),
+			'menu_name'             => __( 'Game', 'giantb-press' ),
+			'name_admin_bar'        => __( 'Game', 'giantb-press' ),
+			'archives'              => __( 'Game Archives', 'giantb-press' ),
+			'attributes'            => __( 'Game Attributes', 'giantb-press' ),
+			'parent_item_colon'     => __( 'Game Item:', 'giantb-press' ),
+			'all_items'             => __( 'All Games', 'giantb-press' ),
+			'add_new_item'          => __( 'Add New Game', 'giantb-press' ),
+			'add_new'               => __( 'Add New', 'giantb-press' ),
+			'new_item'              => __( 'New Game', 'giantb-press' ),
+			'edit_item'             => __( 'Edit Game', 'giantb-press' ),
+			'update_item'           => __( 'Update Game', 'giantb-press' ),
+			'view_item'             => __( 'View Game', 'giantb-press' ),
+			'view_items'            => __( 'View Games', 'giantb-press' ),
+			'search_items'          => __( 'Search Game', 'giantb-press' ),
+			'not_found'             => __( 'Not found', 'giantb-press' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'giantb-press' ),
+			'featured_image'        => __( 'Game Image', 'giantb-press' ),
+			'set_featured_image'    => __( 'Set game image', 'giantb-press' ),
+			'remove_featured_image' => __( 'Remove game image', 'giantb-press' ),
+			'use_featured_image'    => __( 'Use as game image', 'giantb-press' ),
+			'insert_into_item'      => __( 'Insert into game', 'giantb-press' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this game', 'giantb-press' ),
+			'items_list'            => __( 'Games list', 'giantb-press' ),
+			'items_list_navigation' => __( 'Games list navigation', 'giantb-press' ),
+			'filter_items_list'     => __( 'Filter games list', 'giantb-press' ),
+		);
+		$rewrite = array(
+			'slug'                  => 'games-data',
+			'with_front'            => true,
+			'pages'                 => true,
+			'feeds'                 => true,
+		);
+		$args = array(
+			'label'                 => __( 'Game', 'giantb-press' ),
+			'description'           => __( 'This is to store game data', 'giantb-press' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
+			'hierarchical'          => true,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'menu_icon'             => 'dashicons-album',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'rewrite'               => $rewrite,
+			'capability_type'       => 'page',
+			'show_in_rest'          => true,
+			'rest_controller_class' => 'WP_REST_Games_Controller',
+		);
+		register_post_type( 'gbp_games', $args );
 
 	}
+
+	public function giant_bomb_api_connection() {
+
+    $game_data = $this->api_loader->games(10,10);
+
+	}
+
+	public function cmb_sample_metaboxes( array $meta_boxes ) {
+
+		/**
+		 * Example of all available fields.
+		 */
+
+		$fields = array(
+
+			array( 'id' => 'field-1',  'name' => 'Text input field', 'type' => 'text' ),
+			array( 'id' => 'field-2', 'name' => 'Read-only text input field', 'type' => 'text', 'readonly' => true, 'default' => 'READ ONLY' ),
+			array( 'id' => 'field-3', 'name' => 'Repeatable text input field', 'type' => 'text', 'desc' => 'Add up to 5 fields.', 'repeatable' => true, 'repeatable_max' => 5, 'sortable' => true ),
+
+			array( 'id' => 'field-4',  'name' => 'Small text input field', 'type' => 'text_small' ),
+			array( 'id' => 'field-5',  'name' => 'URL field', 'type' => 'url' ),
+
+			array( 'id' => 'field-6',  'name' => 'Radio input field', 'type' => 'radio', 'options' => array( 'Option 1', 'Option 2' ) ),
+			array( 'id' => 'field-7',  'name' => 'Checkbox field', 'type' => 'checkbox' ),
+
+			array( 'id' => 'field-8',  'name' => 'WYSIWYG field', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'repeatable' => true, 'sortable' => true ),
+
+			array( 'id' => 'field-9',  'name' => 'Textarea field', 'type' => 'textarea' ),
+			array( 'id' => 'field-10',  'name' => 'Code textarea field', 'type' => 'textarea_code' ),
+
+			array( 'id' => 'field-11', 'name' => 'File field', 'type' => 'file', 'file_type' => 'image', 'repeatable' => 1, 'sortable' => 1 ),
+			array( 'id' => 'field-12', 'name' => 'Image upload field', 'type' => 'image', 'repeatable' => true, 'show_size' => true ),
+
+			array( 'id' => 'field-13', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'allow_none' => true, 'sortable' => true, 'repeatable' => true ),
+			array( 'id' => 'field-14', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'multiple' => true ),
+			array( 'id' => 'field-15', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category' ),
+			array( 'id' => 'field-15b', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category',  'multiple' => true ),
+			array( 'id' => 'field-16', 'name' => 'Post select field', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'cat' => 1 ) ),
+			array( 'id' => 'field-17', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true ),
+			array( 'id' => 'field-17b', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true, 'query' => array( 'posts_per_page' => 8 ), 'multiple' => true ),
+
+			array( 'id' => 'field-18', 'name' => 'Date input field', 'type' => 'date' ),
+			array( 'id' => 'field-19', 'name' => 'Time input field', 'type' => 'time' ),
+			array( 'id' => 'field-20', 'name' => 'Date (unix) input field', 'type' => 'date_unix' ),
+			array( 'id' => 'field-21', 'name' => 'Date & Time (unix) input field', 'type' => 'datetime_unix' ),
+
+			array( 'id' => 'field-22', 'name' => 'Color', 'type' => 'colorpicker' ),
+
+			array( 'id' => 'field-23', 'name' => 'Location', 'type' => 'gmap', 'google_api_key' => '{CUSTOM_KEY}' ),
+
+			array( 'id' => 'field-24', 'name' => 'Title Field', 'type' => 'title' ),
+
+		);
+
+		$meta_boxes[] = array(
+			'title' => 'CMB Test - all fields',
+			'pages' => 'post',
+			'fields' => $fields,
+		);
+
+		/**
+		 * Examples of Groups and Columns.
+		 */
+
+		$groups_and_cols = array(
+			array( 'id' => 'gac-1',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
+			array( 'id' => 'gac-2',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
+			array( 'id' => 'gac-3',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
+			array(
+				'id'     => 'gac-4',
+				'name'   => 'Group (4 columns)',
+				'type'   => 'group',
+				'cols'   => 4,
+				'fields' => array(
+					array( 'id' => 'gac-4-f-1',  'name' => 'Textarea field', 'type' => 'textarea' ),
+				),
+			),
+			array(
+				'id'     => 'gac-5',
+				'name'   => 'Group (8 columns)',
+				'type'   => 'group',
+				'cols'   => 8,
+				'fields' => array(
+					array( 'id' => 'gac-4-f-1',  'name' => 'Text input field', 'type' => 'text' ),
+					array( 'id' => 'gac-4-f-2',  'name' => 'Text input field', 'type' => 'text' ),
+				),
+			),
+		);
+
+		$meta_boxes[] = array(
+			'title' => 'Groups and Columns',
+			'pages' => 'post',
+			'fields' => $groups_and_cols,
+		);
+
+		/**
+		 * Example of repeatable group. Using all fields.
+		 * For this example, copy fields from $fields, update ID.
+		 */
+
+		$group_fields = $fields;
+		foreach ( $group_fields as &$field ) {
+			$field['id'] = str_replace( 'field', 'gfield', $field['id'] );
+		}
+
+		$meta_boxes[] = array(
+			'title' => 'CMB Test - group (all fields)',
+			'pages' => 'post',
+			'fields' => array(
+				array(
+					'id' => 'gp',
+					'name' => 'My Repeatable Group',
+					'type' => 'group',
+					'repeatable' => true,
+					'sortable' => true,
+					'fields' => $group_fields,
+					'desc' => 'This is the group description.',
+				),
+			),
+		);
+
+		return $meta_boxes;
+
+	}
+
 
 }

@@ -122,6 +122,9 @@ class Giantb_Press {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-giantb-press-public.php';
 
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'cmb/custom-meta-boxes.php';
+
+
 		$this->loader = new Giantb_Press_Loader();
 
 	}
@@ -156,7 +159,9 @@ class Giantb_Press {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'init', $plugin_admin, 'giant_bomb_post_types');
 		$this->loader->add_action( 'init', $plugin_admin , 'giant_bomb_api_connection');
+		$this->loader->add_filter( 'cmb_meta_boxes', $plugin_admin, 'cmb_sample_metaboxes');
 
 	}
 
