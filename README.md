@@ -1,4 +1,4 @@
-=== GiantBpress ===
+### GiantBpress
 Contributors: dazunj
 Donate link: http://dasun.ediris.in/ghe
 Tags: giant bomb, gaming, reviews , custom-post types
@@ -10,12 +10,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin is to fetch latest gaming data from Giant Bomb and store in your WordPress web site in WordPressy way.
 
-== Description ==
+##Description
 
 The purpose of plugin is to fetch data from giantbomb.com and store in WordPress as a custom post type.
 
 
-== Installation ==
+##Installation
 
 This section describes how to install the plugin and get it working.
 
