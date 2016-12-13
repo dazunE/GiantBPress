@@ -40,6 +40,17 @@ class Giantb_Press_Admin {
 	 */
 	private $version;
 
+
+	/**
+	* This is to load api connector
+	*
+	* @since 1.0.0
+	* @access protected
+	* @var Object  The api return objects
+	*/
+
+	protected $api_loader;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,7 +62,19 @@ class Giantb_Press_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->load_admin_dependecies();
 
+	}
+
+	/**
+	* Load dependencies
+	*/
+
+	private function load_admin_dependecies(){
+
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-giantb-press-api.php';
+
+			$this->api_loader = new Giantb_Press_Api('4b8c6b8c6e5f7595ee18949b31ca8eaa3110b8d1');
 	}
 
 	/**
@@ -97,6 +120,12 @@ class Giantb_Press_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/giantb-press-admin.js', array( 'jquery' ), $this->version, false );
+
+	}
+
+	public function giant_bomb_api_connection() {
+
+    $game_data = $this->api_loader->games();
 
 	}
 

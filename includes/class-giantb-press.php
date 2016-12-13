@@ -108,9 +108,11 @@ class Giantb_Press {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-giantb-press-i18n.php';
 
+
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-giantb-press-admin.php';
 
 		/**
@@ -118,6 +120,7 @@ class Giantb_Press {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-giantb-press-public.php';
+
 
 		$this->loader = new Giantb_Press_Loader();
 
@@ -153,6 +156,7 @@ class Giantb_Press {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'init', $plugin_admin , 'giant_bomb_api_connection');
 
 	}
 

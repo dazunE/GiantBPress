@@ -40,6 +40,8 @@ class Giantb_Press_Public {
 	 */
 	private $version;
 
+
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -53,6 +55,7 @@ class Giantb_Press_Public {
 		$this->version = $version;
 
 	}
+
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
@@ -99,5 +102,8 @@ class Giantb_Press_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/giantb-press-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+
+
 
 }
