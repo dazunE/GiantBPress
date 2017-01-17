@@ -124,7 +124,7 @@ class Giantb_Press_Admin {
 	}
 
 
-  public function giant_bomb_post_types() {
+    public function giant_bomb_post_types() {
 
 		$labels = array(
 			'name'                  => _x( 'Games', 'Post Type General Name', 'giantb-press' ),
@@ -165,7 +165,7 @@ class Giantb_Press_Admin {
 			'label'                 => __( 'Game', 'giantb-press' ),
 			'description'           => __( 'This is to store game data', 'giantb-press' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
+			'supports'              => array( 'title', 'editor', 'thumbnail', ),
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
@@ -186,6 +186,9 @@ class Giantb_Press_Admin {
 		register_post_type( 'gbp_games', $args );
 
 	}
+
+
+	
 
 	public function giant_bomb_api_connection() {
 
@@ -309,6 +312,41 @@ class Giantb_Press_Admin {
 
 		return $meta_boxes;
 
+	}
+
+	public function ginat_bomb_feed_games (){
+
+		// Initialize the page ID to -1. This indicates no action has been taken.
+		$post_id = -1;
+
+		// Setup the author, slug, and title for the post
+		$author_id = 1;
+		$slug = 'example-post';
+		$title = 'My Example Post';
+
+		// If the page doesn't already exist, then create it
+		if( null == get_page_by_title( $title ) ) {
+
+			// Set the post ID so that we know the post was created successfully
+			$post_id = wp_insert_post(
+				array(
+					'comment_status'	=>	'closed',
+					'ping_status'		=>	'closed',
+					'post_author'		=>	$author_id,
+					'post_name'			=>	$slug,
+					'post_title'		=>	$title,
+					'post_status'		=>	'publish',
+					'post_type'		=>	'post'
+				)
+			);
+
+		// Otherwise, we'll stop
+		} else {
+
+	    		// Arbitrarily use -2 to indicate that the page with the title already exists
+	    		$post_id = -2;
+
+		} // end if
 	}
 
 
