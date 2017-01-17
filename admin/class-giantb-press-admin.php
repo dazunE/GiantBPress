@@ -165,7 +165,7 @@ class Giantb_Press_Admin {
 			'label'                 => __( 'Game', 'giantb-press' ),
 			'description'           => __( 'This is to store game data', 'giantb-press' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
+			'supports'              => array( 'title', 'editor','thumbnail', ),
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
@@ -191,17 +191,126 @@ class Giantb_Press_Admin {
 
     $game_data = $this->api_loader->games(10,10);
 
+    //var_dump($game_data);
+
 	}
 
-	public function cmb_sample_metaboxes( array $meta_boxes ) {
+	public function giant_bomb_game_meta_data( $meta_boxes ){
 
-		/**
-		 * Example of all available fields.
-		 */
-
+		
 		$fields = array(
 
-			array( 'id' => 'field-1',  'name' => 'Text input field', 'type' => 'text' ),
+		array(
+			'id'     => 'gaintb-expected_relese_data',
+			'name'   => __('Game Update / Added Details','giantb-press'),
+			'type'   => 'group',
+			'fields' => array(
+					array( 
+
+						'id' 	=> 'giantb-date_added',
+						'name' 	=> __('Added Date','giantb-press'),
+						'type' 	=> 'date',
+						'cols'	=> 6 
+					),
+
+					array( 
+						'id' 	=> 'giantb-date_last_updated',
+						'name' 	=> __('Last updated date','giantb-press'), 
+						'type' 	=> 'date', 
+						'cols'	=> 6 
+					),
+
+					array( 
+						'id' => 'gaintb-dec',  
+						'name' => __('Dec','giantb-press'), 
+						'type' => 'wysiwyg', 
+						'options' => array( 'editor_height' => '100' ), 
+					),
+				)
+			),
+
+			array(
+				'id'     => 'gaintb-expected_relese_data',
+				'name'   => __('Expected Release Infromation','giantb-press'),
+				'type'   => 'group',
+				'fields' => array(
+
+					array( 
+						'id' => 'giantb-expected_release_month',  
+						'name' => __('Month','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-expected_release_quarter',  
+						'name' => __('Quater', 'giantb-press' ), 
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-expected_release_year',  
+						'name' => __('Year','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+				),
+			),
+
+			array(
+				'id'     => 'gaintb-expected_other_data',
+				'name'   => __('Other Data','giantb-press'),
+				'type'   => 'group',
+				'fields' => array(
+
+					array( 
+						'id' => 'giantb-franchises',  
+						'name' => __('Franchises','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-genres',  
+						'name' => __('Genres', 'giantb-press' ), 
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-publishers',  
+						'name' => __('Publishers','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-platforms',  
+						'name' => __('Platforms','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-developers',  
+						'name' => __('Developers', 'giantb-press' ), 
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+					array( 
+						'id' => 'giantb-themes',  
+						'name' => __('Themes','giantb-press' ),  
+						'type' => 'text',
+						'cols' => 4,
+						),
+
+				),
+			),
+
+
 			array( 'id' => 'field-2', 'name' => 'Read-only text input field', 'type' => 'text', 'readonly' => true, 'default' => 'READ ONLY' ),
 			array( 'id' => 'field-3', 'name' => 'Repeatable text input field', 'type' => 'text', 'desc' => 'Add up to 5 fields.', 'repeatable' => true, 'repeatable_max' => 5, 'sortable' => true ),
 
@@ -241,73 +350,18 @@ class Giantb_Press_Admin {
 		);
 
 		$meta_boxes[] = array(
-			'title' => 'CMB Test - all fields',
-			'pages' => 'post',
+			'title' => __('Gaint Bomb Game Data','giantb-press'),
+			'pages' => 'gbp_games',
 			'fields' => $fields,
 		);
 
-		/**
-		 * Examples of Groups and Columns.
-		 */
-
-		$groups_and_cols = array(
-			array( 'id' => 'gac-1',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
-			array( 'id' => 'gac-2',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
-			array( 'id' => 'gac-3',  'name' => 'Text input field', 'type' => 'text', 'cols' => 4 ),
-			array(
-				'id'     => 'gac-4',
-				'name'   => 'Group (4 columns)',
-				'type'   => 'group',
-				'cols'   => 4,
-				'fields' => array(
-					array( 'id' => 'gac-4-f-1',  'name' => 'Textarea field', 'type' => 'textarea' ),
-				),
-			),
-			array(
-				'id'     => 'gac-5',
-				'name'   => 'Group (8 columns)',
-				'type'   => 'group',
-				'cols'   => 8,
-				'fields' => array(
-					array( 'id' => 'gac-4-f-1',  'name' => 'Text input field', 'type' => 'text' ),
-					array( 'id' => 'gac-4-f-2',  'name' => 'Text input field', 'type' => 'text' ),
-				),
-			),
-		);
-
-		$meta_boxes[] = array(
-			'title' => 'Groups and Columns',
-			'pages' => 'post',
-			'fields' => $groups_and_cols,
-		);
-
-		/**
-		 * Example of repeatable group. Using all fields.
-		 * For this example, copy fields from $fields, update ID.
-		 */
-
-		$group_fields = $fields;
-		foreach ( $group_fields as &$field ) {
-			$field['id'] = str_replace( 'field', 'gfield', $field['id'] );
-		}
-
-		$meta_boxes[] = array(
-			'title' => 'CMB Test - group (all fields)',
-			'pages' => 'post',
-			'fields' => array(
-				array(
-					'id' => 'gp',
-					'name' => 'My Repeatable Group',
-					'type' => 'group',
-					'repeatable' => true,
-					'sortable' => true,
-					'fields' => $group_fields,
-					'desc' => 'This is the group description.',
-				),
-			),
-		);
-
 		return $meta_boxes;
+
+	}
+
+	public function cmb_sample_metaboxes( array $meta_boxes ) {
+
+		
 
 	}
 
