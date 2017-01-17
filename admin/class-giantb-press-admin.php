@@ -165,11 +165,7 @@ class Giantb_Press_Admin {
 			'label'                 => __( 'Game', 'giantb-press' ),
 			'description'           => __( 'This is to store game data', 'giantb-press' ),
 			'labels'                => $labels,
-<<<<<<< HEAD
 			'supports'              => array( 'title', 'editor', 'thumbnail', ),
-=======
-			'supports'              => array( 'title', 'editor','thumbnail', ),
->>>>>>> 4aa2e71869ed3b44e75b44b814f5ffaca956266e
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
