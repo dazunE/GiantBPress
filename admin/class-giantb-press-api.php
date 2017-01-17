@@ -138,13 +138,23 @@
       * @return string combined filter string
       */
      private function format_filter($filters = array())
- 	{
+     {
+
+       if(isset($filters)) {
+
+        if( is_array($filters) || is_object($filters) ) {
+
          $filters_merged = array();
+
          foreach ($filters as $ky => $vl)
- 		{
+           {
              $filters_merged[] = $ky . ':' . $vl;
-         }
+           }
          return implode(',', $filters_merged);
+
+        }
+
+       }
      }
      /**
       * Get information about given object type

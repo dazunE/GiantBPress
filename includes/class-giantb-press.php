@@ -161,8 +161,8 @@ class Giantb_Press {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'giant_bomb_post_types');
 		$this->loader->add_action( 'init', $plugin_admin , 'giant_bomb_api_connection');
-		$this->loader->add_filter( 'cmb_meta_boxes', $plugin_admin, 'giant_bomb_game_meta_data');
-		//$this->loader->add_filter( 'after_setup_theme', $plugin_admin, 'ginat_bomb_feed_games' );
+		$this->loader->add_action( 'cmb_meta_boxes', $plugin_admin, 'giant_bomb_game_meta_data' );
+
 
 	}
 

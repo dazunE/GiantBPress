@@ -165,7 +165,11 @@ class Giantb_Press_Admin {
 			'label'                 => __( 'Game', 'giantb-press' ),
 			'description'           => __( 'This is to store game data', 'giantb-press' ),
 			'labels'                => $labels,
+<<<<<<< HEAD
 			'supports'              => array( 'title', 'editor', 'thumbnail', ),
+=======
+			'supports'              => array( 'title', 'editor','thumbnail', ),
+>>>>>>> 4aa2e71869ed3b44e75b44b814f5ffaca956266e
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
@@ -188,143 +192,145 @@ class Giantb_Press_Admin {
 	}
 
 
-	
+
 
 	public function giant_bomb_api_connection() {
 
     $game_data = $this->api_loader->games(10,10);
 
+    //var_dump($game_data);
+
 	}
 
 	public function giant_bomb_game_meta_data( $meta_boxes ){
-		
-		$fields = array(
-		array(
-			'id'     => 'gaintb-expected_relese_data',
-			'name'   => __('Game Update / Added Details','giantb-press'),
-			'type'   => 'group',
-			'fields' => array(
-					array( 
-						'id' 	=> 'giantb-date_added',
-						'name' 	=> __('Added Date','giantb-press'),
-						'type' 	=> 'date',
-						'cols'	=> 6 
-					),
-					array( 
-						'id' 	=> 'giantb-date_last_updated',
-						'name' 	=> __('Last updated date','giantb-press'), 
-						'type' 	=> 'date', 
-						'cols'	=> 6 
-					),
-					array( 
-						'id' => 'gaintb-dec',  
-						'name' => __('Dec','giantb-press'), 
-						'type' => 'wysiwyg', 
-						'options' => array( 'editor_height' => '100' ), 
-					),
-				)
-			),
+
+			$fields = array(
 			array(
 				'id'     => 'gaintb-expected_relese_data',
-				'name'   => __('Expected Release Infromation','giantb-press'),
+				'name'   => __('Game Update / Added Details','giantb-press'),
 				'type'   => 'group',
 				'fields' => array(
-					array( 
-						'id' => 'giantb-expected_release_month',  
-						'name' => __('Month','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
+						array(
+							'id' 	=> 'giantb-date_added',
+							'name' 	=> __('Added Date','giantb-press'),
+							'type' 	=> 'date',
+							'cols'	=> 6
 						),
-					array( 
-						'id' => 'giantb-expected_release_quarter',  
-						'name' => __('Quater', 'giantb-press' ), 
-						'type' => 'text',
-						'cols' => 4,
+						array(
+							'id' 	=> 'giantb-date_last_updated',
+							'name' 	=> __('Last updated date','giantb-press'),
+							'type' 	=> 'date',
+							'cols'	=> 6
 						),
-					array( 
-						'id' => 'giantb-expected_release_year',  
-						'name' => __('Year','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
+						array(
+							'id' => 'gaintb-dec',
+							'name' => __('Dec','giantb-press'),
+							'type' => 'wysiwyg',
+							'options' => array( 'editor_height' => '100' ),
 						),
+					)
 				),
-			),
-			array(
-				'id'     => 'gaintb-expected_other_data',
-				'name'   => __('Other Data','giantb-press'),
-				'type'   => 'group',
-				'fields' => array(
-					array( 
-						'id' => 'giantb-franchises',  
-						'name' => __('Franchises','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
-						),
-					array( 
-						'id' => 'giantb-genres',  
-						'name' => __('Genres', 'giantb-press' ), 
-						'type' => 'text',
-						'cols' => 4,
-						),
-					array( 
-						'id' => 'giantb-publishers',  
-						'name' => __('Publishers','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
-						),
-					array( 
-						'id' => 'giantb-platforms',  
-						'name' => __('Platforms','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
-						),
-					array( 
-						'id' => 'giantb-developers',  
-						'name' => __('Developers', 'giantb-press' ), 
-						'type' => 'text',
-						'cols' => 4,
-						),
-					array( 
-						'id' => 'giantb-themes',  
-						'name' => __('Themes','giantb-press' ),  
-						'type' => 'text',
-						'cols' => 4,
-						),
+				array(
+					'id'     => 'gaintb-expected_relese_data',
+					'name'   => __('Expected Release Infromation','giantb-press'),
+					'type'   => 'group',
+					'fields' => array(
+						array(
+							'id' => 'giantb-expected_release_month',
+							'name' => __('Month','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-expected_release_quarter',
+							'name' => __('Quater', 'giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-expected_release_year',
+							'name' => __('Year','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+					),
 				),
-			),
-			array( 'id' => 'field-2', 'name' => 'Read-only text input field', 'type' => 'text', 'readonly' => true, 'default' => 'READ ONLY' ),
-			array( 'id' => 'field-3', 'name' => 'Repeatable text input field', 'type' => 'text', 'desc' => 'Add up to 5 fields.', 'repeatable' => true, 'repeatable_max' => 5, 'sortable' => true ),
-			array( 'id' => 'field-4',  'name' => 'Small text input field', 'type' => 'text_small' ),
-			array( 'id' => 'field-5',  'name' => 'URL field', 'type' => 'url' ),
-			array( 'id' => 'field-6',  'name' => 'Radio input field', 'type' => 'radio', 'options' => array( 'Option 1', 'Option 2' ) ),
-			array( 'id' => 'field-7',  'name' => 'Checkbox field', 'type' => 'checkbox' ),
-			array( 'id' => 'field-8',  'name' => 'WYSIWYG field', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'repeatable' => true, 'sortable' => true ),
-			array( 'id' => 'field-9',  'name' => 'Textarea field', 'type' => 'textarea' ),
-			array( 'id' => 'field-10',  'name' => 'Code textarea field', 'type' => 'textarea_code' ),
-			array( 'id' => 'field-11', 'name' => 'File field', 'type' => 'file', 'file_type' => 'image', 'repeatable' => 1, 'sortable' => 1 ),
-			array( 'id' => 'field-12', 'name' => 'Image upload field', 'type' => 'image', 'repeatable' => true, 'show_size' => true ),
-			array( 'id' => 'field-13', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'allow_none' => true, 'sortable' => true, 'repeatable' => true ),
-			array( 'id' => 'field-14', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'multiple' => true ),
-			array( 'id' => 'field-15', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category' ),
-			array( 'id' => 'field-15b', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category',  'multiple' => true ),
-			array( 'id' => 'field-16', 'name' => 'Post select field', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'cat' => 1 ) ),
-			array( 'id' => 'field-17', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true ),
-			array( 'id' => 'field-17b', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true, 'query' => array( 'posts_per_page' => 8 ), 'multiple' => true ),
-			array( 'id' => 'field-18', 'name' => 'Date input field', 'type' => 'date' ),
-			array( 'id' => 'field-19', 'name' => 'Time input field', 'type' => 'time' ),
-			array( 'id' => 'field-20', 'name' => 'Date (unix) input field', 'type' => 'date_unix' ),
-			array( 'id' => 'field-21', 'name' => 'Date & Time (unix) input field', 'type' => 'datetime_unix' ),
-			array( 'id' => 'field-22', 'name' => 'Color', 'type' => 'colorpicker' ),
-			array( 'id' => 'field-23', 'name' => 'Location', 'type' => 'gmap', 'google_api_key' => '{CUSTOM_KEY}' ),
-			array( 'id' => 'field-24', 'name' => 'Title Field', 'type' => 'title' ),
-		);
-		$meta_boxes[] = array(
-			'title' => __('Gaint Bomb Game Data','giantb-press'),
-			'pages' => 'gbp_games',
-			'fields' => $fields,
-		);
-		return $meta_boxes;
-	}
+				array(
+					'id'     => 'gaintb-expected_other_data',
+					'name'   => __('Other Data','giantb-press'),
+					'type'   => 'group',
+					'fields' => array(
+						array(
+							'id' => 'giantb-franchises',
+							'name' => __('Franchises','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-genres',
+							'name' => __('Genres', 'giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-publishers',
+							'name' => __('Publishers','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-platforms',
+							'name' => __('Platforms','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-developers',
+							'name' => __('Developers', 'giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+						array(
+							'id' => 'giantb-themes',
+							'name' => __('Themes','giantb-press' ),
+							'type' => 'text',
+							'cols' => 4,
+							),
+					),
+				),
+				array( 'id' => 'field-2', 'name' => 'Read-only text input field', 'type' => 'text', 'readonly' => true, 'default' => 'READ ONLY' ),
+				array( 'id' => 'field-3', 'name' => 'Repeatable text input field', 'type' => 'text', 'desc' => 'Add up to 5 fields.', 'repeatable' => true, 'repeatable_max' => 5, 'sortable' => true ),
+				array( 'id' => 'field-4',  'name' => 'Small text input field', 'type' => 'text_small' ),
+				array( 'id' => 'field-5',  'name' => 'URL field', 'type' => 'url' ),
+				array( 'id' => 'field-6',  'name' => 'Radio input field', 'type' => 'radio', 'options' => array( 'Option 1', 'Option 2' ) ),
+				array( 'id' => 'field-7',  'name' => 'Checkbox field', 'type' => 'checkbox' ),
+				array( 'id' => 'field-8',  'name' => 'WYSIWYG field', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'repeatable' => true, 'sortable' => true ),
+				array( 'id' => 'field-9',  'name' => 'Textarea field', 'type' => 'textarea' ),
+				array( 'id' => 'field-10',  'name' => 'Code textarea field', 'type' => 'textarea_code' ),
+				array( 'id' => 'field-11', 'name' => 'File field', 'type' => 'file', 'file_type' => 'image', 'repeatable' => 1, 'sortable' => 1 ),
+				array( 'id' => 'field-12', 'name' => 'Image upload field', 'type' => 'image', 'repeatable' => true, 'show_size' => true ),
+				array( 'id' => 'field-13', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'allow_none' => true, 'sortable' => true, 'repeatable' => true ),
+				array( 'id' => 'field-14', 'name' => 'Select field', 'type' => 'select', 'options' => array( 'option-1' => 'Option 1', 'option-2' => 'Option 2', 'option-3' => 'Option 3' ), 'multiple' => true ),
+				array( 'id' => 'field-15', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category' ),
+				array( 'id' => 'field-15b', 'name' => 'Select taxonomy field', 'type' => 'taxonomy_select',  'taxonomy' => 'category',  'multiple' => true ),
+				array( 'id' => 'field-16', 'name' => 'Post select field', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'cat' => 1 ) ),
+				array( 'id' => 'field-17', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true ),
+				array( 'id' => 'field-17b', 'name' => 'Post select field (AJAX)', 'type' => 'post_select', 'use_ajax' => true, 'query' => array( 'posts_per_page' => 8 ), 'multiple' => true ),
+				array( 'id' => 'field-18', 'name' => 'Date input field', 'type' => 'date' ),
+				array( 'id' => 'field-19', 'name' => 'Time input field', 'type' => 'time' ),
+				array( 'id' => 'field-20', 'name' => 'Date (unix) input field', 'type' => 'date_unix' ),
+				array( 'id' => 'field-21', 'name' => 'Date & Time (unix) input field', 'type' => 'datetime_unix' ),
+				array( 'id' => 'field-22', 'name' => 'Color', 'type' => 'colorpicker' ),
+				array( 'id' => 'field-23', 'name' => 'Location', 'type' => 'gmap', 'google_api_key' => '{CUSTOM_KEY}' ),
+				array( 'id' => 'field-24', 'name' => 'Title Field', 'type' => 'title' ),
+			);
+			$meta_boxes[] = array(
+				'title' => __('Gaint Bomb Game Data','giantb-press'),
+				'pages' => 'gbp_games',
+				'fields' => $fields,
+			);
+			return $meta_boxes;
+		}
 
 	public function ginat_bomb_feed_games (){
 
@@ -359,7 +365,11 @@ class Giantb_Press_Admin {
 	    		$post_id = -2;
 
 		} // end if
+
+		return $meta_boxes;
+
 	}
+
 
 
 }
